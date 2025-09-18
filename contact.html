@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us - BPMR FICO</title>
+    <link rel="stylesheet" href="./sap.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    />
+  </head>
+  <body>
+    <header>
+      <img
+        class="logo"
+        src="./sap.logo.jpg"
+        alt="BPMR FICO & DIGITAL ACADEMY."
+      />
+      <nav>
+        <a href="./index.html" class="download-btn">Home</a>
+        <a href="contact.html" class="download-btn">Contact Us</a>
+        <a href="https://wa.me/9391983250" class="download-btn">Join Now</a>
+      </nav>
+    </header>
+
+    <section class="contact">
+      <h2 class="highlight">Contact <span class="highlight">Us</span></h2>
+      <p>We’d love to hear from you! Fill out the form or reach us directly.</p>
+      <div class="contact-container">
+        <div class="card-box">
+          <h3>Send us a Message</h3>
+          <form>
+            <div class="form-group">
+              <label for="name">Full Name</label>
+              <input
+                type="text"
+                id="name"
+                placeholder="Enter your name"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input
+                type="email"
+                id="email"
+                placeholder="Enter your email"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea
+                id="message"
+                rows="5"
+                placeholder="Write your message here..."
+                required
+              ></textarea>
+            </div>
+            <button type="submit" class="btn-orange">Send Message</button>
+          </form>
+        </div>
+
+        <div class="card-box">
+          <h3>Get in Touch</h3>
+          <div class="info-item">
+            <i class="bi bi-geo-alt-fill"></i>
+            <p>
+              <strong>BPMR FICO & DIGITAL ACADEMY</strong><br />
+              Near Hanuman Temple,<br />
+              Opp. Current SubStation,<br />
+              Vengalarao Nagar, Kavali – 524201, INDIA
+            </p>
+          </div>
+          <div class="info-item">
+            <i class="bi bi-telephone-fill"></i>
+            <p><a href="tel:+919391983250">+91 9391983250</a></p>
+          </div>
+          <div class="info-item">
+            <i class="bi bi-envelope-fill"></i>
+            <p>
+              <a href="mailto:sreekanthdega8@gmail.com"
+                >sreekanthdega8@gmail.com</a
+              >
+            </p>
+          </div>
+          <ul class="social">
+            <li>
+              <a href="#"><i class="bi bi-instagram"></i></a>
+            </li>
+            <li>
+              <a href="#"><i class="bi bi-linkedin"></i></a>
+            </li>
+            <li>
+              <a href="#"><i class="bi bi-twitter"></i></a>
+            </li>
+            <li>
+              <a href="#"><i class="bi bi-youtube"></i></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <a
+      href="https://wa.me/919391983250"
+      class="whatsapp-float"
+      target="_blank"
+      title="Chat with us on WhatsApp"
+    >
+      <i class="bi bi-whatsapp"></i>
+    </a>
+
+    <footer class="site-footer">
+      <div class="footer-bar">
+        <p>
+          © <span id="year"></span> BPMR FICO & DIGITAL ACADEMY. All Rights
+          Reserved.
+        </p>
+      </div>
+    </footer>
+
+    <script src="./sap.js"></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
+    ></script>
+    <script type="text/javascript">
+      (function () {
+        emailjs.init({
+          publicKey: "ei9bSrYBvyFiRpNyx",
+        });
+      })();
+    </script>
+  </body>
+</html>
