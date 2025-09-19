@@ -218,6 +218,70 @@
         </p>
       </div>
     </footer>
+    <!-- Callback Request Popup -->
+    <div id="callback-popup" class="callback-popup">
+      <div class="callback-content">
+        <button class="callback-close" id="callback-close">&times;</button>
+        <div class="callback-icon">
+          <i class="bi bi-telephone-fill"></i>
+        </div>
+        <h3>Request a Free Callback</h3>
+        <p>
+          Get personalized guidance about our SAP FICO courses. Our experts will
+          call you back within 24 hours!
+        </p>
+        <form id="callback-form">
+          <div class="callback-form-group">
+            <input
+              type="text"
+              id="callback-name"
+              placeholder="Your Name"
+              required
+            />
+          </div>
+          <div class="callback-form-group">
+            <input
+              type="tel"
+              id="callback-phone"
+              placeholder="Your Phone Number"
+              required
+            />
+          </div>
+          <div class="callback-form-group">
+            <select id="callback-time" required>
+              <option value="">Preferred Call Time</option>
+              <option value="morning">Morning (9 AM - 12 PM)</option>
+              <option value="afternoon">Afternoon (12 PM - 5 PM)</option>
+              <option value="evening">Evening (5 PM - 8 PM)</option>
+            </select>
+          </div>
+          <button type="submit" class="callback-btn">Request Callback</button>
+        </form>
+        <div class="callback-footer">
+          <small
+            >We respect your privacy. Your information will not be
+            shared.</small
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- Success Notification Popup -->
+    <div id="notification-popup" class="notification-popup">
+      <div class="notification-content">
+        <div class="notification-icon">
+          <i class="bi bi-check-circle-fill"></i>
+        </div>
+        <h3>Callback Request Sent!</h3>
+        <p>
+          Thank you for your interest in SAP FICO training. We've received your
+          callback request and will contact you within 24 hours during your
+          preferred time.
+        </p>
+        <button class="btn-close" id="close-popup">Close</button>
+      </div>
+    </div>
+
     <a
       href="https://wa.me/9391983250"
       class="whatsapp-float"
@@ -225,6 +289,7 @@
       title="Chat with us on WhatsApp"
     >
       <i class="bi bi-whatsapp"></i>
+      <span class="whatsapp-text">Chat Now</span>
     </a>
     <script
       type="text/javascript"
