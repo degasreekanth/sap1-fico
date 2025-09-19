@@ -86,13 +86,51 @@ nav a.download-btn:hover,
 .hero {
   text-align: left;
   padding: 80px 60px;
+  position: relative;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  background-image: url("./sap.img.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.2);
+  z-index: 1;
+}
+
+.hero-container {
+  position: relative;
+  z-index: 2;
+  color: var(--white);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
 }
 
 .hero h1 {
   font-size: 48px;
   font-weight: bold;
-  color: var(--dark-text);
+  color: white;
   line-height: 1.2;
+}
+
+/* SAPFICO styling - bold and blue */
+.sapfico-text {
+  font-weight: 900;
+  color: #1e40af;
+  text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
+  font-size: 1.1em;
 }
 
 .hero h1 .highlight,
@@ -100,9 +138,59 @@ nav a.download-btn:hover,
   color: var(--primary-color);
 }
 
-.hero p {
+/* Learn SAP section styling */
+.hero-subtitle {
   font-size: 20px;
   color: var(--muted-text);
+  margin-top: 15px;
+  margin-bottom: 20px;
+}
+
+.learn-quote {
+  font-weight: bold;
+  color: var(--primary-color);
+  font-size: 22px;
+}
+
+.training-highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  align-items: center;
+  margin-top: 20px;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(15px);
+  border-radius: 15px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.highlight-item {
+  font-weight: 600;
+  color: #333;
+  padding: 10px 15px;
+  background: #ffeb3b;
+  border-radius: 8px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 15px rgba(255, 235, 59, 0.3);
+}
+
+.highlight-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(30, 64, 175, 0.2);
+}
+
+.separator {
+  color: var(--primary-color);
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.hero p {
+  font-size: 20px;
+  color: white;
   margin-top: 10px;
 }
 
@@ -420,10 +508,10 @@ nav a.download-btn:hover,
 .footer-wrap {
   max-width: 1200px;
   margin: auto;
-  padding: 48px 20px 28px;
+  padding: 32px 20px 20px;
   display: grid;
-  gap: 36px;
-  grid-template-columns: 1.2fr 2fr;
+  gap: 24px;
+  grid-template-columns: 1.2fr 1.8fr;
 }
 
 .footer-about,
@@ -433,18 +521,18 @@ nav a.download-btn:hover,
 }
 
 .footer-about {
-  gap: 16px;
+  gap: 12px;
   border-right: 1px solid var(--footer-line);
-  padding-right: 24px;
+  padding-right: 20px;
 }
 
 .footer-logo {
-  width: 190px;
+  width: 160px;
   height: auto;
   object-fit: contain;
   background: var(--white);
-  padding: 6px;
-  border-radius: 8px;
+  padding: 4px;
+  border-radius: 6px;
 }
 
 .about-text {
@@ -454,15 +542,15 @@ nav a.download-btn:hover,
 
 .social {
   display: flex;
-  gap: 12px;
+  gap: 10px;
   list-style: none;
   padding: 0;
-  margin: 6px 0 0 0;
+  margin: 4px 0 0 0;
 }
 
 .social a {
-  width: 36px;
-  height: 36px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   display: inline-flex;
   align-items: center;
@@ -482,15 +570,15 @@ nav a.download-btn:hover,
 
 .footer-columns {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px 32px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px 28px;
 }
 
 .col-title {
   color: var(--white);
-  margin-bottom: 12px;
-  font-size: 1.05rem;
-  letter-spacing: 0.4px;
+  margin-bottom: 10px;
+  font-size: 1rem;
+  letter-spacing: 0.3px;
 }
 
 .links {
@@ -514,48 +602,93 @@ nav a.download-btn:hover,
 
 .contact-item {
   display: grid;
-  grid-template-columns: 22px 1fr;
-  gap: 10px;
-  margin: 10px 0;
+  grid-template-columns: 18px 1fr;
+  gap: 8px;
+  margin: 6px 0;
 }
 
 .contact-item i {
   color: var(--white);
-  margin-top: 4px;
+  margin-top: 2px;
+  font-size: 0.9rem;
 }
 
 .footer-bar {
   border-top: 1px solid var(--footer-line);
-  margin-top: 18px;
+  margin-top: 12px;
   text-align: center;
-  padding: 14px 16px 22px;
+  padding: 12px 16px 16px;
   color: var(--footer-text);
-  font-size: 0.95rem;
+  font-size: 0.9rem;
+}
+
+/* Form validation styles */
+.form-group input:invalid:not(:placeholder-shown) {
+  border-color: #ff4444;
+  box-shadow: 0 0 5px rgba(255, 68, 68, 0.3);
+}
+
+.form-group input:valid:not(:placeholder-shown) {
+  border-color: #28a745;
+  box-shadow: 0 0 5px rgba(40, 167, 69, 0.3);
+}
+
+.form-group textarea:invalid:not(:placeholder-shown) {
+  border-color: #ff4444;
+  box-shadow: 0 0 5px rgba(255, 68, 68, 0.3);
+}
+
+.form-group textarea:valid:not(:placeholder-shown) {
+  border-color: #28a745;
+  box-shadow: 0 0 5px rgba(40, 167, 69, 0.3);
+}
+
+.form-group label {
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: var(--text-dark);
 }
 
 /* Floating WhatsApp Button */
 .whatsapp-float {
   position: fixed;
-  width: 55px;
-  height: 55px;
   bottom: 20px;
   right: 20px;
   background-color: #25d366;
   color: var(--white);
-  border-radius: 50%;
+  border-radius: 50px;
   text-align: center;
-  font-size: 28px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   z-index: 1000;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: transform 0.2s ease, background 0.3s ease;
+  text-decoration: none;
+  padding: 12px 20px;
+  gap: 8px;
+  min-width: 55px;
+  height: 55px;
 }
 
 .whatsapp-float:hover {
   background-color: #1ebe5d;
-  transform: scale(1.1);
+  transform: scale(1.05);
+  color: var(--white);
+}
+
+.whatsapp-float i {
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+/* WhatsApp text - visible on desktop */
+.whatsapp-text {
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  opacity: 1;
+  transition: opacity 0.3s ease;
 }
 
 /* Callback Request Popup Styles */
@@ -778,6 +911,21 @@ nav a.download-btn:hover,
 }
 
 /* Responsive Adjustments */
+/* Large Desktop */
+@media (min-width: 1400px) {
+  .hero {
+    min-height: 70vh;
+    background-image: url("./sap.img.jpg");
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+  }
+
+  .hero::before {
+    background: rgba(255, 255, 255, 0.15);
+  }
+}
+
 @media (max-width: 1200px) {
   section,
   .faq-section,
@@ -788,8 +936,53 @@ nav a.download-btn:hover,
   }
   .footer-wrap {
     max-width: 900px;
-    padding: 32px 12px 18px;
-    gap: 24px;
+    padding: 24px 12px 12px;
+    gap: 18px;
+  }
+
+  /* Hero responsive adjustments */
+  .hero {
+    padding: 60px 40px;
+    min-height: 50vh;
+    background-image: url("./sap.img.jpg");
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+  }
+
+  .hero::before {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  .sapfico-section {
+    padding: 15px 30px;
+    margin: 8px 0;
+  }
+
+  .sapfico-text {
+    font-size: 1em;
+  }
+
+  /* WhatsApp button for desktop/laptop */
+  .whatsapp-float {
+    width: auto;
+    min-width: 120px;
+    height: 50px;
+    border-radius: 25px;
+    padding: 10px 18px;
+  }
+
+  .whatsapp-text {
+    display: block;
+    font-size: 13px;
+  }
+
+  .hero h1 {
+    font-size: 42px;
+  }
+
+  .training-highlights {
+    gap: 12px;
   }
 }
 
@@ -807,6 +1000,130 @@ nav a.download-btn:hover,
   .logo {
     width: 140px;
   }
+
+  /* Hero responsive for tablet */
+  .hero {
+    padding: 50px 30px;
+    min-height: 45vh;
+    background-image: url("./sap.img.jpg");
+    background-size: cover;
+    background-position: center center;
+    background-attachment: scroll;
+  }
+
+  .hero::before {
+    background: rgba(255, 255, 255, 0.25);
+  }
+
+  .sapfico-section {
+    padding: 12px 25px;
+    margin: 5px 0;
+  }
+
+  .sapfico-text {
+    font-size: 0.95em;
+  }
+
+  /* WhatsApp button for tablet */
+  .whatsapp-float {
+    width: auto;
+    min-width: 100px;
+    height: 45px;
+    border-radius: 22px;
+    padding: 8px 15px;
+    bottom: 25px;
+    right: 25px;
+  }
+
+  .whatsapp-float i {
+    font-size: 20px;
+  }
+
+  .whatsapp-text {
+    display: block;
+    font-size: 12px;
+  }
+
+  .hero h1 {
+    font-size: 36px;
+  }
+
+  .hero-subtitle {
+    font-size: 18px;
+  }
+
+  .learn-quote {
+    font-size: 20px;
+  }
+
+  .training-highlights {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .highlight-item {
+    text-align: center;
+    padding: 10px 15px;
+  }
+
+  .separator {
+    display: none;
+  }
+}
+
+/* Tablet-specific breakpoint (768px) */
+@media (max-width: 768px) {
+  .hero {
+    text-align: center;
+    padding: 40px 20px;
+    min-height: 40vh;
+    background-image: url("./sap.img.jpg");
+    background-size: cover;
+    background-position: center center;
+    background-attachment: scroll;
+  }
+
+  .hero::before {
+    background: rgba(255, 255, 255, 0.3);
+  }
+
+  .sapfico-section {
+    padding: 10px 20px;
+    margin: 5px 0;
+    border-radius: 12px;
+  }
+
+  .sapfico-text {
+    font-size: 0.9em;
+  }
+
+  .hero h1 {
+    font-size: 32px;
+  }
+
+  .training-highlights {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 10px;
+  }
+
+  /* WhatsApp button for small tablet */
+  .whatsapp-float {
+    width: 50px;
+    height: 50px;
+    min-width: 50px;
+    border-radius: 50%;
+    padding: 12px;
+  }
+
+  .whatsapp-float i {
+    font-size: 22px;
+  }
+
+  .whatsapp-text {
+    display: none;
+  }
 }
 
 @media (max-width: 640px) {
@@ -819,7 +1136,7 @@ nav a.download-btn:hover,
   }
   .footer-wrap {
     max-width: 98vw;
-    padding: 12px 4vw 8px;
+    padding: 16px 4vw 8px;
     gap: 12px;
     grid-template-columns: 1fr;
   }
@@ -835,11 +1152,13 @@ nav a.download-btn:hover,
   }
   header {
     flex-direction: column;
-    align-items: flex-start;
-    padding: 8px 4vw;
+    align-items: center;
+    padding: 12px 4vw;
+    text-align: center;
   }
   .logo {
-    width: 110px;
+    width: 120px;
+    margin-bottom: 10px;
   }
   .header-left {
     gap: 10px;
@@ -848,16 +1167,196 @@ nav a.download-btn:hover,
     width: 100%;
     margin-top: 10px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: center;
     gap: 8px;
+    flex-wrap: wrap;
   }
   nav a.download-btn,
   .download-btn {
-    width: 100%;
+    flex: 1;
+    min-width: 80px;
     box-sizing: border-box;
     text-align: center;
     margin: 0;
-    padding: 12px 0;
+    padding: 10px 8px;
+    font-size: 14px;
+  }
+
+  /* Simplified hero for mobile */
+  .hero {
+    padding: 30px 15px;
+    text-align: center;
+    min-height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url("./sap.img.jpg");
+    background-size: cover;
+    background-position: center center;
+    background-attachment: scroll;
+  }
+
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.35);
+    z-index: 1;
+  }
+
+  .hero-container {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .sapfico-section {
+    padding: 8px 15px;
+    margin: 3px 0;
+    border-radius: 10px;
+  }
+
+  .sapfico-text {
+    font-size: 24px;
+    font-weight: 900;
+  }
+
+  .hero h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+
+  .sapfico-text {
+    display: block;
+    margin-top: 5px;
+    font-size: 24px;
+    font-weight: 900;
+  }
+
+  .hero-subtitle {
+    font-size: 16px;
+    margin-bottom: 15px;
+    line-height: 1.4;
+  }
+
+  .learn-quote {
+    font-size: 18px;
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  .training-highlights {
+    display: none; /* Hide on mobile for simplicity */
+  }
+
+  /* Mobile WhatsApp button adjustments */
+  .whatsapp-float {
+    width: 50px;
+    height: 50px;
+    min-width: 50px;
+    bottom: 15px;
+    right: 15px;
+    border-radius: 50%;
+    padding: 12px;
+    box-shadow: 0 2px 10px rgba(37, 211, 102, 0.4);
+  }
+
+  .whatsapp-float i {
+    font-size: 24px;
+  }
+
+  .whatsapp-float:hover {
+    transform: scale(1.05);
+  }
+
+  .whatsapp-text {
+    display: none;
+  }
+
+  /* Simplify cards for mobile */
+  .feature-cards {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .feature-card {
+    padding: 20px 15px;
+  }
+
+  .feature-card h3 {
+    font-size: 1.1rem;
+  }
+
+  .feature-card p {
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+
+  /* Simplify course cards */
+  .cards {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .card {
+    padding: 20px 15px;
+  }
+
+  .card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+  }
+
+  .card ul {
+    padding-left: 20px;
+  }
+
+  .card li {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin-bottom: 5px;
+  }
+}
+
+/* Extra small mobile devices */
+@media (max-width: 480px) {
+  .hero {
+    padding: 25px 10px;
+    min-height: 45vh;
+    background-image: url("./sap.img.jpg");
+    background-size: cover;
+    background-position: center center;
+    background-attachment: scroll;
+  }
+
+  .hero::before {
+    background: rgba(255, 255, 255, 0.4);
+  }
+
+  .sapfico-section {
+    padding: 6px 12px;
+    margin: 2px 0;
+    border-radius: 8px;
+  }
+
+  .hero h1 {
+    font-size: 22px;
+    margin-bottom: 8px;
+  }
+
+  .sapfico-text {
+    font-size: 22px;
+  }
+
+  .hero-subtitle {
+    font-size: 15px;
+  }
+
+  .learn-quote {
     font-size: 17px;
   }
 }
