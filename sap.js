@@ -229,11 +229,11 @@ document.addEventListener("DOMContentLoaded", () => {
   if (callbackCloseBtn)
     callbackCloseBtn.addEventListener("click", hideCallbackPopup);
 
-  // Auto-show callback popup after 8s
+  // Auto-show callback popup after 13s
   setTimeout(() => {
     const cbPopup = document.getElementById("callback-popup");
     if (cbPopup && !cbPopup.classList.contains("show")) showCallbackPopup();
-  }, 8000);
+  }, 13000);
 
   // Footer year
   const yearSpan = document.getElementById("year");
