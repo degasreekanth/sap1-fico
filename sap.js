@@ -27,6 +27,224 @@ function sanitizeInput(input) {
     .replace(/&/g, "&amp;");
 }
 
+// ===================== REFER FRIENDS FUNCTIONALITY =====================
+function showReferPopup() {
+  const referData = {
+    title: "Refer Friends to BPMR SAP-FICO Training",
+    description:
+      "Help your friends advance their careers with professional SAP FICO training!",
+    benefits: [
+      "Your friend gets expert SAP FICO training",
+      "You earn referral rewards",
+      "Both get placement assistance",
+      "Strengthen your professional network",
+    ],
+    shareText: `🎯 Transform your career with SAP FICO training! 
+
+✅ Expert trainers with real-world experience
+✅ Hands-on practical training
+✅ Mock interviews & placement assistance
+✅ Flexible learning options
+
+Join BPMR SAP-FICO Training Academy and become job-ready!
+
+📞 Call: +91 9391983250
+🌐 Visit: https://bpmrsapfico.com/
+
+#SAPFICO #CareerGrowth #Training`,
+  };
+
+  // Remove existing refer popup if any
+  const existingPopup = document.getElementById("refer-popup");
+  if (existingPopup) {
+    existingPopup.remove();
+  }
+
+  // Create refer popup
+  const popup = document.createElement("div");
+  popup.id = "refer-popup";
+  popup.className = "refer-popup";
+
+  const popupContent = document.createElement("div");
+  popupContent.className = "refer-popup-content";
+
+  popupContent.innerHTML = `
+    <div class="refer-header">
+      <div class="refer-icon">
+        <i class="bi bi-people-fill"></i>
+      </div>
+      <h3>${referData.title}</h3>
+      <button class="refer-close" onclick="hideReferPopup()">&times;</button>
+    </div>
+    
+    <div class="refer-body">
+      <p class="refer-description">${referData.description}</p>
+      
+      <div class="refer-benefits">
+        <h4><i class="bi bi-gift-fill"></i> Benefits</h4>
+        <ul>
+          ${referData.benefits
+            .map(
+              (benefit) =>
+                `<li><i class="bi bi-check-circle-fill"></i> ${benefit}</li>`
+            )
+            .join("")}
+        </ul>
+      </div>
+      
+      <div class="refer-actions">
+        <button class="refer-share-btn" onclick="shareReferMessage()">
+          <i class="bi bi-share-fill"></i> Share via Apps
+        </button>
+        
+        <button class="refer-copy-btn" onclick="copyReferMessage()">
+          <i class="bi bi-clipboard-fill"></i> Copy Message
+        </button>
+        
+        <button class="refer-whatsapp-btn" onclick="shareViaWhatsApp()">
+          <i class="bi bi-whatsapp"></i> Share on WhatsApp
+        </button>
+      </div>
+      
+      <div class="refer-footer">
+        <small><i class="bi bi-info-circle-fill"></i> Share this message with friends who are interested in SAP FICO training</small>
+      </div>
+    </div>
+  `;
+
+  popup.appendChild(popupContent);
+  document.body.appendChild(popup);
+
+  // Show popup with animation
+  setTimeout(() => popup.classList.add("show"), 10);
+
+  // Close popup when clicking outside
+  popup.addEventListener("click", (e) => {
+    if (e.target === popup) {
+      hideReferPopup();
+    }
+  });
+}
+
+function hideReferPopup() {
+  const popup = document.getElementById("refer-popup");
+  if (popup) {
+    popup.classList.remove("show");
+    setTimeout(() => popup.remove(), 300);
+  }
+}
+
+function shareReferMessage() {
+  const referText = `🎯 Transform your career with SAP FICO training! 
+
+✅ Expert trainers with real-world experience
+✅ Hands-on practical training
+✅ Mock interviews & placement assistance
+✅ Flexible learning options
+
+Join BPMR SAP-FICO Training Academy and become job-ready!
+
+📞 Call: +91 9391983250
+🌐 Visit: https://bpmrsapfico.com/
+
+#SAPFICO #CareerGrowth #Training`;
+
+  if (navigator.share) {
+    navigator
+      .share({
+        title: "SAP FICO Training Opportunity",
+        text: referText,
+        url: "https://bpmrsapfico.com/",
+      })
+      .then(() => {
+        console.log("✅ Refer message shared successfully");
+        hideReferPopup();
+      })
+      .catch((error) => {
+        console.log("❌ Error sharing refer message:", error);
+      });
+  } else {
+    // Fallback: copy to clipboard
+    copyReferMessage();
+  }
+}
+
+function copyReferMessage() {
+  const referText = `🎯 Transform your career with SAP FICO training! 
+
+✅ Expert trainers with real-world experience
+✅ Hands-on practical training
+✅ Mock interviews & placement assistance
+✅ Flexible learning options
+
+Join BPMR SAP-FICO Training Academy and become job-ready!
+
+📞 Call: +91 9391983250
+🌐 Visit: https://bpmrsapfico.com/
+
+#SAPFICO #CareerGrowth #Training`;
+
+  navigator.clipboard
+    .writeText(referText)
+    .then(() => {
+      showReferSuccess(
+        "✅ Referral message copied! Share it with your friends."
+      );
+      hideReferPopup();
+    })
+    .catch(() => {
+      // Fallback for older browsers
+      const textArea = document.createElement("textarea");
+      textArea.value = referText;
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand("copy");
+      document.body.removeChild(textArea);
+
+      showReferSuccess(
+        "✅ Referral message copied! Share it with your friends."
+      );
+      hideReferPopup();
+    });
+}
+
+function shareViaWhatsApp() {
+  const referText = `🎯 Transform your career with SAP FICO training! 
+
+✅ Expert trainers with real-world experience
+✅ Hands-on practical training
+✅ Mock interviews & placement assistance
+✅ Flexible learning options
+
+Join BPMR SAP-FICO Training Academy and become job-ready!
+
+📞 Call: +91 9391983250
+🌐 Visit: https://bpmrsapfico.com/
+
+#SAPFICO #CareerGrowth #Training`;
+
+  const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(referText)}`;
+  window.open(whatsappUrl, "_blank");
+  hideReferPopup();
+}
+
+function showReferSuccess(message) {
+  // Show success message
+  const successMsg = document.createElement("div");
+  successMsg.className = "refer-success";
+  successMsg.innerHTML = `<i class="bi bi-check-circle-fill"></i> ${message}`;
+  document.body.appendChild(successMsg);
+
+  setTimeout(() => {
+    successMsg.classList.add("show");
+  }, 10);
+
+  setTimeout(() => {
+    successMsg.classList.remove("show");
+    setTimeout(() => successMsg.remove(), 300);
+  }, 3000);
+}
+
 // ===================== NOTIFICATION POPUP =====================
 function updateNotificationContent(type = "callback") {
   const title = document.querySelector(".notification-content h3");
@@ -228,6 +446,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const callbackCloseBtn = document.getElementById("callback-close");
   if (callbackCloseBtn)
     callbackCloseBtn.addEventListener("click", hideCallbackPopup);
+
+  // Refer Friends button
+  const referBtn = document.getElementById("refer-btn");
+  if (referBtn) {
+    referBtn.addEventListener("click", showReferPopup);
+  }
 
   // Auto-show callback popup after 13s
   setTimeout(() => {

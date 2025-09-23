@@ -694,6 +694,54 @@ nav a.download-btn:hover,
   color: var(--text-dark);
 }
 
+/* Floating Refer Friends Button */
+.refer-float {
+  position: fixed;
+  bottom: 100px;
+  right: 20px;
+  background: linear-gradient(135deg, var(--primary-color), #e85b12);
+  color: var(--white);
+  border: none;
+  border-radius: 50px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(255, 107, 31, 0.3);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  padding: 12px 20px;
+  gap: 8px;
+  min-width: 55px;
+  height: 55px;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.refer-float:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(255, 107, 31, 0.5);
+}
+
+.refer-float:active {
+  transform: scale(0.95);
+}
+
+.refer-float i {
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+/* Refer text - visible on desktop */
+.refer-text {
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
 /* Floating WhatsApp Button */
 .whatsapp-float {
   position: fixed;
@@ -1053,6 +1101,21 @@ nav a.download-btn:hover,
     font-size: 1em;
   }
 
+  /* Refer button for desktop/laptop */
+  .refer-float {
+    width: auto;
+    min-width: 140px;
+    height: 50px;
+    border-radius: 25px;
+    padding: 10px 18px;
+    bottom: 90px;
+  }
+
+  .refer-text {
+    display: block;
+    font-size: 13px;
+  }
+
   /* WhatsApp button for desktop/laptop */
   .whatsapp-float {
     width: auto;
@@ -1112,6 +1175,26 @@ nav a.download-btn:hover,
 
   .sapfico-text {
     font-size: 0.95em;
+  }
+
+  /* Refer button for tablet */
+  .refer-float {
+    width: auto;
+    min-width: 120px;
+    height: 45px;
+    border-radius: 22px;
+    padding: 8px 15px;
+    bottom: 90px;
+    right: 25px;
+  }
+
+  .refer-float i {
+    font-size: 20px;
+  }
+
+  .refer-text {
+    display: block;
+    font-size: 12px;
   }
 
   /* WhatsApp button for tablet */
@@ -1448,6 +1531,30 @@ nav a.download-btn:hover,
     display: none;
   }
 
+  /* Mobile Refer button adjustments */
+  .refer-float {
+    width: 50px;
+    height: 50px;
+    min-width: 50px;
+    bottom: 85px;
+    right: 15px;
+    border-radius: 50%;
+    padding: 12px;
+    box-shadow: 0 2px 10px rgba(255, 107, 31, 0.4);
+  }
+
+  .refer-float i {
+    font-size: 24px;
+  }
+
+  .refer-float:hover {
+    transform: scale(1.05);
+  }
+
+  .refer-text {
+    display: none;
+  }
+
   /* Mobile WhatsApp button adjustments */
   .whatsapp-float {
     width: 50px;
@@ -1751,5 +1858,298 @@ nav a.download-btn:hover,
     height: 50px;
     font-size: 20px;
     margin-bottom: 15px;
+  }
+}
+
+/* Refer Friends Popup Styles */
+.refer-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  backdrop-filter: blur(5px);
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.refer-popup.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.refer-popup-content {
+  background: white;
+  padding: 0;
+  border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  max-width: 500px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  transform: scale(0.8) translateY(30px);
+  transition: transform 0.3s ease;
+  position: relative;
+}
+
+.refer-popup.show .refer-popup-content {
+  transform: scale(1) translateY(0);
+}
+
+.refer-header {
+  background: linear-gradient(135deg, var(--primary-color), #e85b12);
+  color: white;
+  padding: 25px 30px;
+  border-radius: 20px 20px 0 0;
+  text-align: center;
+  position: relative;
+}
+
+.refer-icon {
+  width: 60px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 15px;
+  font-size: 28px;
+  backdrop-filter: blur(10px);
+}
+
+.refer-header h3 {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.refer-close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 28px;
+  color: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+  transition: color 0.3s ease;
+  line-height: 1;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.refer-close:hover {
+  color: white;
+}
+
+.refer-body {
+  padding: 30px;
+}
+
+.refer-description {
+  color: var(--muted-text);
+  margin-bottom: 25px;
+  line-height: 1.6;
+  font-size: 15px;
+  text-align: center;
+}
+
+.refer-benefits {
+  margin-bottom: 30px;
+}
+
+.refer-benefits h4 {
+  color: var(--dark-text);
+  margin-bottom: 15px;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.refer-benefits h4 i {
+  color: var(--primary-color);
+}
+
+.refer-benefits ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.refer-benefits li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 10px;
+  padding: 8px 0;
+  color: var(--dark-text);
+  font-size: 14px;
+}
+
+.refer-benefits li i {
+  color: #28a745;
+  font-size: 16px;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.refer-actions {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.refer-share-btn,
+.refer-copy-btn,
+.refer-whatsapp-btn {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 14px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.refer-whatsapp-btn {
+  background: #25d366;
+}
+
+.refer-copy-btn {
+  background: #6c757d;
+}
+
+.refer-share-btn:hover {
+  background: #e85b12;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 107, 31, 0.3);
+}
+
+.refer-copy-btn:hover {
+  background: #5a6268;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(108, 117, 125, 0.3);
+}
+
+.refer-whatsapp-btn:hover {
+  background: #1ebe5d;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+}
+
+.refer-footer {
+  text-align: center;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 10px;
+}
+
+.refer-footer small {
+  color: #6c757d;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.refer-footer i {
+  color: var(--primary-color);
+}
+
+/* Refer success message */
+.refer-success {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #28a745;
+  color: white;
+  padding: 15px 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+  z-index: 10000;
+  opacity: 0;
+  transform: translateX(100%);
+  transition: all 0.3s ease;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 300px;
+}
+
+.refer-success.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.refer-success i {
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+/* Responsive refer popup */
+@media (max-width: 768px) {
+  .refer-popup-content {
+    margin: 10px;
+    max-width: calc(100vw - 20px);
+  }
+
+  .refer-header {
+    padding: 20px 25px;
+  }
+
+  .refer-header h3 {
+    font-size: 1.2rem;
+  }
+
+  .refer-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  .refer-body {
+    padding: 25px 20px;
+  }
+
+  .refer-actions {
+    gap: 10px;
+  }
+
+  .refer-share-btn,
+  .refer-copy-btn,
+  .refer-whatsapp-btn {
+    padding: 12px 16px;
+    font-size: 14px;
+  }
+
+  .refer-success {
+    right: 10px;
+    top: 10px;
+    padding: 12px 16px;
+    font-size: 14px;
+    max-width: calc(100vw - 40px);
   }
 }
