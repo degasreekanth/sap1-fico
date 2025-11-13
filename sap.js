@@ -6,6 +6,10 @@ if (typeof emailjs !== "undefined" && emailjs.init) {
   console.error("❌ EmailJS SDK not loaded.");
 }
 
+// DOM Elements
+let notificationTimer;
+let callbackTimer;
+
 // Validation functions
 function validateEmail(email) {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -27,10 +31,20 @@ function sanitizeInput(input) {
     .replace(/&/g, "&amp;");
 }
 
+// ===================== HEADER SCROLL EFFECT =====================
+window.addEventListener("scroll", function () {
+  const header = document.querySelector("header");
+  if (window.scrollY > 50) {
+    header.classList.add("scrolled");
+  } else {
+    header.classList.remove("scrolled");
+  }
+});
+
 // ===================== REFER FRIENDS FUNCTIONALITY =====================
 function showReferPopup() {
   const referData = {
-    title: "Refer Friends to BPMR SAP-FICO Training",
+    title: "Refer Friends to GoFICO Training",
     description:
       "Help your friends advance their careers with professional SAP FICO training!",
     benefits: [
@@ -46,10 +60,10 @@ function showReferPopup() {
 ✅ Mock interviews & placement assistance
 ✅ Flexible learning options
 
-Join BPMR SAP-FICO Training Academy and become job-ready!
+Join GoFICO Training Academy and become job-ready!
 
 📞 Call: +91 9391983250
-🌐 Visit: https://bpmrsapfico.com/
+🌐 Visit: https://gofico.com/
 
 #SAPFICO #CareerGrowth #Training`,
   };
@@ -124,13 +138,20 @@ Join BPMR SAP-FICO Training Academy and become job-ready!
       hideReferPopup();
     }
   });
+
+  // Prevent body scroll when popup is open
+  document.body.style.overflow = "hidden";
 }
 
 function hideReferPopup() {
   const popup = document.getElementById("refer-popup");
   if (popup) {
     popup.classList.remove("show");
-    setTimeout(() => popup.remove(), 300);
+    setTimeout(() => {
+      popup.remove();
+      // Re-enable body scroll
+      document.body.style.overflow = "";
+    }, 300);
   }
 }
 
@@ -142,10 +163,10 @@ function shareReferMessage() {
 ✅ Mock interviews & placement assistance
 ✅ Flexible learning options
 
-Join BPMR SAP-FICO Training Academy and become job-ready!
+Join GoFICO Training Academy and become job-ready!
 
 📞 Call: +91 9391983250
-🌐 Visit: https://bpmrsapfico.com/
+🌐 Visit: https://gofico.com/
 
 #SAPFICO #CareerGrowth #Training`;
 
@@ -154,7 +175,7 @@ Join BPMR SAP-FICO Training Academy and become job-ready!
       .share({
         title: "SAP FICO Training Opportunity",
         text: referText,
-        url: "https://bpmrsapfico.com/",
+        url: "https://gofico.com/",
       })
       .then(() => {
         console.log("✅ Refer message shared successfully");
@@ -177,10 +198,10 @@ function copyReferMessage() {
 ✅ Mock interviews & placement assistance
 ✅ Flexible learning options
 
-Join BPMR SAP-FICO Training Academy and become job-ready!
+Join GoFICO Training Academy and become job-ready!
 
 📞 Call: +91 9391983250
-🌐 Visit: https://bpmrsapfico.com/
+🌐 Visit: https://gofico.com/
 
 #SAPFICO #CareerGrowth #Training`;
 
@@ -216,10 +237,10 @@ function shareViaWhatsApp() {
 ✅ Mock interviews & placement assistance
 ✅ Flexible learning options
 
-Join BPMR SAP-FICO Training Academy and become job-ready!
+Join GoFICO Training Academy and become job-ready!
 
 📞 Call: +91 9391983250
-🌐 Visit: https://bpmrsapfico.com/
+🌐 Visit: https://gofico.com/
 
 #SAPFICO #CareerGrowth #Training`;
 
@@ -229,6 +250,12 @@ Join BPMR SAP-FICO Training Academy and become job-ready!
 }
 
 function showReferSuccess(message) {
+  // Remove existing success message if any
+  const existingMsg = document.querySelector(".refer-success");
+  if (existingMsg) {
+    existingMsg.remove();
+  }
+
   // Show success message
   const successMsg = document.createElement("div");
   successMsg.className = "refer-success";
@@ -263,7 +290,6 @@ function updateNotificationContent(type = "callback") {
   }
 }
 
-let notificationTimer;
 function showNotification(type = "callback") {
   const popup = document.getElementById("notification-popup");
   if (!popup) return console.error("Notification popup not found");
@@ -277,23 +303,33 @@ function showNotification(type = "callback") {
 
 function hideNotification() {
   const popup = document.getElementById("notification-popup");
-  if (popup) popup.classList.remove("show");
+  if (popup) {
+    popup.classList.remove("show");
+    // Re-enable body scroll
+    document.body.style.overflow = "";
+  }
 }
 
 // ===================== CALLBACK POPUP =====================
-let callbackTimer;
 function showCallbackPopup() {
   const popup = document.getElementById("callback-popup");
   if (!popup) return console.error("Callback popup not found");
 
   popup.classList.add("show");
   clearTimeout(callbackTimer);
-  callbackTimer = setTimeout(hideCallbackPopup, 30000);
+  callbackTimer = setTimeout(hideCallbackPopup, 50000);
+
+  // Prevent body scroll when popup is open
+  document.body.style.overflow = "hidden";
 }
 
 function hideCallbackPopup() {
   const popup = document.getElementById("callback-popup");
-  if (popup) popup.classList.remove("show");
+  if (popup) {
+    popup.classList.remove("show");
+    // Re-enable body scroll
+    document.body.style.overflow = "";
+  }
 }
 
 // ===================== CALLBACK SUBMISSION =====================
@@ -324,7 +360,7 @@ function submitCallbackRequest() {
     name,
     phone,
     preferred_time: preferredTime,
-    email: "callback-request@sapfico.com",
+    email: "callback-request@gofico.com",
     message: `CALLBACK REQUEST DETAILS:
 
 👤 Name: ${name}
@@ -340,6 +376,12 @@ function submitCallbackRequest() {
 🎯 Course Interest: SAP FICO Training Program`,
   };
 
+  // Show loading state
+  const submitBtn = document.querySelector(".callback-btn");
+  const originalText = submitBtn.innerHTML;
+  submitBtn.innerHTML = '<i class="bi bi-arrow-repeat spin"></i> Sending...';
+  submitBtn.disabled = true;
+
   emailjs
     .send("service_ooxv8wf", "template_d536ja9", callbackParams)
     .then(() => {
@@ -352,6 +394,11 @@ function submitCallbackRequest() {
     .catch((error) => {
       console.error("❌ Callback request failed:", error);
       alert("Failed to submit. Contact us at +91 9391983250.");
+    })
+    .finally(() => {
+      // Reset button state
+      submitBtn.innerHTML = originalText;
+      submitBtn.disabled = false;
     });
 }
 
@@ -380,6 +427,12 @@ function emailSend() {
 
   const params = { name, email, message };
 
+  // Show loading state
+  const submitBtn = document.querySelector(".btn-orange");
+  const originalText = submitBtn.innerHTML;
+  submitBtn.innerHTML = '<i class="bi bi-arrow-repeat spin"></i> Sending...';
+  submitBtn.disabled = true;
+
   emailjs
     .send("service_ooxv8wf", "template_d536ja9", params)
     .then(() => {
@@ -391,7 +444,27 @@ function emailSend() {
     .catch((error) => {
       console.error("❌ Contact form failed:", error);
       alert("Failed to send: " + (error.text || error));
+    })
+    .finally(() => {
+      // Reset button state
+      submitBtn.innerHTML = originalText;
+      submitBtn.disabled = false;
     });
+}
+
+// ===================== FORM VALIDATION =====================
+function validateFormInput(input, min, validator) {
+  const val = sanitizeInput(input.value);
+  if (val && (val.length < min || !validator(val))) {
+    input.style.borderColor = "#ef4444";
+    input.style.boxShadow = "0 0 0 3px rgba(239, 68, 68, 0.1)";
+  } else if (val) {
+    input.style.borderColor = "#10b981";
+    input.style.boxShadow = "0 0 0 3px rgba(16, 185, 129, 0.1)";
+  } else {
+    input.style.borderColor = "#e2e8f0";
+    input.style.boxShadow = "none";
+  }
 }
 
 // ===================== DOM INITIALIZATION =====================
@@ -399,33 +472,31 @@ document.addEventListener("DOMContentLoaded", () => {
   console.log("🚀 DOM ready, initializing...");
 
   // Contact form
-  const form = document.querySelector("#contact-form"); // safer than generic <form>
-  if (form) {
-    form.addEventListener("submit", (e) => {
+  const contactForm = document.getElementById("contact-form");
+  if (contactForm) {
+    contactForm.addEventListener("submit", (e) => {
       e.preventDefault();
       emailSend();
     });
   }
 
-  // Input validation colors
-  const inputs = [
+  // Input validation colors for contact form
+  const contactInputs = [
     { el: "name", min: 2, validator: () => true },
     { el: "email", min: 5, validator: validateEmail },
     { el: "message", min: 10, validator: (msg) => msg.length >= 10 },
   ];
 
-  inputs.forEach(({ el, min, validator }) => {
+  contactInputs.forEach(({ el, min, validator }) => {
     const input = document.getElementById(el);
     if (!input) return;
     input.addEventListener("blur", function () {
-      const val = sanitizeInput(this.value);
-      if (val && (val.length < min || !validator(val))) {
-        this.style.borderColor = "#ff4444";
-      } else if (val) {
-        this.style.borderColor = "#28a745";
-      } else {
-        this.style.borderColor = "";
-      }
+      validateFormInput(this, min, validator);
+    });
+
+    // Also validate on input for real-time feedback
+    input.addEventListener("input", function () {
+      validateFormInput(this, min, validator);
     });
   });
 
@@ -453,11 +524,11 @@ document.addEventListener("DOMContentLoaded", () => {
     referBtn.addEventListener("click", showReferPopup);
   }
 
-  // Auto-show callback popup after 13s
+  // Auto-show callback popup after 15s (increased from 13s)
   setTimeout(() => {
     const cbPopup = document.getElementById("callback-popup");
     if (cbPopup && !cbPopup.classList.contains("show")) showCallbackPopup();
-  }, 13000);
+  }, 15000);
 
   // Footer year
   const yearSpan = document.getElementById("year");
@@ -473,4 +544,36 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
+
+  // Add loading spinner CSS
+  const style = document.createElement("style");
+  style.textContent = `
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .spin {
+      animation: spin 1s linear infinite;
+      display: inline-block;
+    }
+    
+    /* Enhanced animations */
+    .feature-card, .card, .card-box {
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+    
+    .highlight-item {
+      transition: all 0.2s ease;
+    }
+    
+    .training-highlights {
+      animation: fadeIn 0.8s ease;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  `;
+  document.head.appendChild(style);
 });
