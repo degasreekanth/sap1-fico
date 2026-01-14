@@ -3,11 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contact Us - BPMR FICO</title>
+    <title>Contact Us - GoFICO</title>
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
-    <link rel="shortcut icon" href="./favicon.svg" />
-    <link rel="apple-touch-icon" href="./favicon.svg" />
+    <link rel="icon" type="image/png" href="./favicon.png" />
+    <link rel="shortcut icon" href="./favicon.png" />
+    <link rel="apple-touch-icon" href="./favicon.png" />
     <link rel="stylesheet" href="./sap.css" />
     <link
       rel="stylesheet"
@@ -16,25 +16,27 @@
   </head>
   <body>
     <header>
-      <img
-        class="logo"
-        src="./sap.logo.jpg"
-        alt="BPMR FICO & DIGITAL ACADEMY."
-      />
+      <div class="logo-container">
+        <img class="logo" src="./gofico.png" alt="GoFICO Logo" />
+      </div>
       <nav>
-        <a href="./index.html" class="download-btn">Home</a>
-
-        <a href="tel:9391983250" class="download-btn">Call Now</a>
+        <a href="./index.html" class="download-btn">
+          <i class="bi bi-house-door-fill"></i> Home
+        </a>
+        <a href="./index.html#courses" class="download-btn">Syllabus</a>
+        <a href="tel:9391983250" class="download-btn">
+          <i class="bi bi-telephone-fill"></i> Call Now
+        </a>
       </nav>
     </header>
 
     <section class="contact">
-      <h2 class="highlight">Contact <span class="highlight">Us</span></h2>
-      <p>We’d love to hear from you! Fill out the form or reach us directly.</p>
+      <h2>Contact <span class="highlight">Us</span></h2>
+      <p>We'd love to hear from you! Fill out the form or reach us directly.</p>
       <div class="contact-container">
         <div class="card-box">
           <h3>Send us a Message</h3>
-          <form>
+          <form id="contact-form">
             <div class="form-group">
               <label for="name">Full Name *</label>
               <input
@@ -69,7 +71,9 @@
                 maxlength="500"
               ></textarea>
             </div>
-            <button type="submit" class="btn-orange">Send Message</button>
+            <button type="submit" class="btn-orange">
+              <i class="bi bi-send-fill"></i> Send Message
+            </button>
           </form>
         </div>
 
@@ -78,10 +82,9 @@
           <div class="info-item">
             <i class="bi bi-geo-alt-fill"></i>
             <p>
-              <strong>BPMR FICO & DIGITAL ACADEMY</strong><br />
-              Near Hanuman Temple,<br />
-              Opp. Current SubStation,<br />
-              Vengalarao Nagar, Kavali – 524201, INDIA
+              <strong>GoFICO Training Academy</strong><br />
+              Near MetroStation, <br />
+              KPHB, HYDERABAD – 500085, INDIA
             </p>
           </div>
           <div class="info-item">
@@ -114,20 +117,81 @@
       </div>
     </section>
 
-    <!-- Notification Popup -->
+    <!-- Callback Request Popup -->
+    <div id="callback-popup" class="callback-popup">
+      <div class="callback-content">
+        <button class="callback-close" id="callback-close">&times;</button>
+        <div class="callback-icon">
+          <i class="bi bi-telephone-fill"></i>
+        </div>
+        <h3>Request a Free Callback</h3>
+        <p>
+          Get personalized guidance about our SAP FICO courses. Our experts will
+          call you back within 24 hours!
+        </p>
+        <form id="callback-form">
+          <div class="callback-form-group">
+            <input
+              type="text"
+              id="callback-name"
+              placeholder="Your Name"
+              required
+            />
+          </div>
+          <div class="callback-form-group">
+            <input
+              type="tel"
+              id="callback-phone"
+              placeholder="Your Phone Number"
+              required
+            />
+          </div>
+          <div class="callback-form-group">
+            <select id="callback-time" required>
+              <option value="">Preferred Call Time</option>
+              <option value="morning">Morning (9 AM - 12 PM)</option>
+              <option value="afternoon">Afternoon (12 PM - 5 PM)</option>
+              <option value="evening">Evening (5 PM - 8 PM)</option>
+            </select>
+          </div>
+          <button type="submit" class="callback-btn">Request Callback</button>
+        </form>
+        <div class="callback-footer">
+          <small
+            >We respect your privacy. Your information will not be
+            shared.</small
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- Success Notification Popup -->
     <div id="notification-popup" class="notification-popup">
       <div class="notification-content">
         <div class="notification-icon">
           <i class="bi bi-check-circle-fill"></i>
         </div>
-        <h3>Message Sent Successfully!</h3>
-        <p>Thank you for contacting us. We'll get back to you soon.</p>
-        <button id="close-popup" class="btn-close">Close</button>
+        <h3>Callback Request Sent!</h3>
+        <p>
+          Thank you for your interest in SAP FICO training. We've received your
+          callback request and will contact you within 24 hours during your
+          preferred time.
+        </p>
+        <button class="btn-close" id="close-popup">Close</button>
       </div>
     </div>
 
+    <button
+      id="refer-btn"
+      class="refer-float"
+      title="Refer your friends and earn rewards"
+    >
+      <i class="bi bi-people-fill"></i>
+      <span class="refer-text">Refer Friends</span>
+    </button>
+
     <a
-      href="https://wa.me/919391983250"
+      href="https://wa.me/9391983250"
       class="whatsapp-float"
       target="_blank"
       title="Chat with us on WhatsApp"
@@ -137,15 +201,59 @@
     </a>
 
     <footer class="site-footer">
+      <div class="footer-wrap">
+        <div class="footer-about">
+          <div class="footer-logo-container">
+            <img class="footer-logo" src="./gofico.png" alt="GoFICO Logo" />
+          </div>
+          <p class="about-text">
+            Expert SAP FICO training with real-world experience and placement
+            support.
+          </p>
+          <ul class="social">
+            <li>
+              <a href="#"><i class="bi bi-instagram"></i></a>
+            </li>
+            <li>
+              <a href="#"><i class="bi bi-linkedin"></i></a>
+            </li>
+            <li>
+              <a href="#"><i class="bi bi-youtube"></i></a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="footer-columns">
+          <div class="col">
+            <h4 class="col-title">Quick Links</h4>
+            <ul class="links">
+              <li><a href="./index.html#courses">SAP-FICO Course</a></li>
+              <li><a href="./index.html#features">About Us</a></li>
+              <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+          </div>
+          <div class="col">
+            <h4 class="col-title">Contact</h4>
+            <div class="contact-item">
+              <i class="bi bi-telephone-fill"></i>
+              <p><a href="tel:+919391983250">+91 9391983250</a></p>
+            </div>
+            <div class="contact-item">
+              <i class="bi bi-envelope-fill"></i>
+              <p><a href="mailto:sreekanthdega8@gmail.com">Email Us</a></p>
+            </div>
+            <div class="contact-item">
+              <i class="bi bi-geo-alt-fill"></i>
+              <p>Kavali, Andhra Pradesh</p>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="footer-bar">
-        <p>
-          © <span id="year"></span> BPMR FICO & DIGITAL ACADEMY. All Rights
-          Reserved.
-        </p>
+        <p>© <span id="year"></span> GoFICO. All Rights Reserved.</p>
       </div>
     </footer>
 
-    <script src="./sap.js"></script>
     <script
       type="text/javascript"
       src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
@@ -157,5 +265,7 @@
         });
       })();
     </script>
+
+    <script src="./sap.js"></script>
   </body>
 </html>
