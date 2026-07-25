@@ -40,20 +40,39 @@
 /* Hero and layout tweaks */
 @media (max-width: 900px) {
   .hero {
-    padding: 48px 20px;
-    min-height: 40vh;
+    padding: 32px 16px;
+    min-height: auto;
     background-position: center top;
   }
+  .hero-content {
+    padding: 20px;
+    border-radius: 20px;
+  }
   .hero h1 {
-    font-size: 32px;
-    text-align: center;
+    font-size: 2rem;
+    text-align: left;
   }
   .hero-subtitle {
-    text-align: center;
-    font-size: 16px;
+    text-align: left;
+    font-size: 0.98rem;
+  }
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .btn {
+    width: 100%;
   }
   .training-highlights {
-    justify-content: center;
+    justify-content: flex-start;
+    padding: 12px;
+  }
+  .highlight-item {
+    width: 100%;
+    text-align: center;
+  }
+  .separator {
+    display: none;
   }
 
   header {
@@ -64,23 +83,26 @@
   }
   .main-nav {
     position: absolute;
-    top: 68px;
-    right: 16px;
+    top: 64px;
+    right: 12px;
+    left: 12px;
     flex-direction: column;
+    align-items: stretch;
     background: var(--white);
     padding: 12px;
-    border-radius: 8px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    border-radius: 16px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.16);
     display: none;
-    min-width: 180px;
+    min-width: auto;
   }
   .main-nav.show {
     display: flex;
   }
   .main-nav a {
     display: block;
-    padding: 8px 10px;
+    padding: 10px 12px;
     margin: 4px 0;
+    text-align: center;
   }
 }
 
@@ -94,6 +116,13 @@
     grid-template-columns: 1fr;
     padding: 20px;
   }
+  .footer-about {
+    border-right: none;
+    padding-right: 0;
+  }
+  .footer-columns {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Floating buttons compactness */
@@ -103,12 +132,15 @@
     display: none;
   }
   .refer-float {
-    bottom: 88px; /* whatsapp (16) + 55 + 17 gap */
+    bottom: 88px;
     right: 14px;
   }
   .whatsapp-float {
     bottom: 16px;
     right: 14px;
+  }
+  .header-left .logo {
+    width: 130px;
   }
 }
 
