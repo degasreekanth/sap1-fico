@@ -84,10 +84,7 @@ Join BPMR SAP-FICO Training Academy and become job-ready!
         <h4><i class="bi bi-gift-fill"></i> Benefits</h4>
         <ul>
           ${referData.benefits
-            .map(
-              (benefit) =>
-                `<li><i class="bi bi-check-circle-fill"></i> ${benefit}</li>`
-            )
+            .map((benefit) => `<li><i class="bi bi-check-circle-fill"></i> ${benefit}</li>`)
             .join("")}
         </ul>
       </div>
@@ -205,6 +202,7 @@ Join BPMR SAP-FICO Training Academy and become job-ready!
         "✅ Referral message copied! Share it with your friends."
       );
       hideReferPopup();
+    });
     });
 }
 
@@ -453,6 +451,47 @@ document.addEventListener("DOMContentLoaded", () => {
     referBtn.addEventListener("click", showReferPopup);
   }
 
+<<<<<<< HEAD
+=======
+  // Mobile navigation toggle (accessibility + outside click)
+  const navToggle = document.getElementById("nav-toggle");
+  const mainNav = document.getElementById("main-nav");
+  function closeNav() {
+    if (mainNav) {
+      mainNav.classList.remove("show");
+      mainNav.setAttribute("aria-hidden", "true");
+    }
+    if (navToggle) {
+      navToggle.setAttribute("aria-expanded", "false");
+    }
+  }
+
+  if (navToggle && mainNav) {
+    navToggle.addEventListener("click", function (e) {
+      const isExpanded = this.getAttribute("aria-expanded") === "true";
+      if (isExpanded) {
+        closeNav();
+      } else {
+        mainNav.classList.add("show");
+        mainNav.setAttribute("aria-hidden", "false");
+        this.setAttribute("aria-expanded", "true");
+      }
+    });
+
+    // Close nav when clicking outside
+    document.addEventListener("click", function (e) {
+      if (!mainNav.contains(e.target) && !navToggle.contains(e.target)) {
+        closeNav();
+      }
+    });
+
+    // Close nav on ESC
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") closeNav();
+    });
+  }
+
+>>>>>>> e0f3a43 (Improve responsiveness: mobile nav, fix floating buttons spacing)
   // Auto-show callback popup after 13s
   setTimeout(() => {
     const cbPopup = document.getElementById("callback-popup");
