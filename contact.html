@@ -34,7 +34,7 @@
       <div class="contact-container">
         <div class="card-box">
           <h3>Send us a Message</h3>
-          <form>
+          <form id="contact-form">
             <div class="form-group">
               <label for="name">Full Name *</label>
               <input
@@ -145,17 +145,12 @@
       </div>
     </footer>
 
-    <script src="./sap.js"></script>
+    <!-- Load EmailJS first, then the site JS which depends on it -->
     <script
       type="text/javascript"
       src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
     ></script>
-    <script type="text/javascript">
-      (function () {
-        emailjs.init({
-          publicKey: "ei9bSrYBvyFiRpNyx",
-        });
-      })();
-    </script>
+
+    <script src="./sap.js"></script>
   </body>
 </html>
